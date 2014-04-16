@@ -1,0 +1,28 @@
+<p><a href="<?php echo $this->url(array(
+        'controller' => 'album', 'action' => 'add')) ?>">
+        Добавить новый альбом</a></p>
+<?php if (count($this->albums)): ?>
+    <?php foreach ($this->albums as $album) : ?>
+        <p>
+            <?php echo $this->escape($album->title) ?><br>
+            <a href="<?php echo $this->url(array(
+                'controller' => 'album',
+                'action'     => 'view',
+                'id'         => $album->id
+            )); ?>">
+
+            <?php if ($album->photos_count > 0): ?>
+                <img src="<?php echo BASE_URL . '/photos/preview/' . $album->preview ?>"></a><br>
+                Фотографий в альбоме: <?php echo $this->escape($album->photos_count) ?><br>
+                Последнее фото загружено <?php echo $this->escape($album->created) ?><br>
+            <?php else: ?>
+                <img src="<?php echo BASE_URL . '/photos/preview/default.png' ?>"></a><br>
+                В альбоме нет фотографий<br>
+            <?php endif ?>
+
+
+        </p>
+    <?php endforeach ?>
+<?php else: ?>
+    <p>Нет альбомов</p>
+<?php endif ?>

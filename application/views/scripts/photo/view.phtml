@@ -1,0 +1,20 @@
+<a href="<?php echo $this->url(array(
+        'controller' => 'album',
+        'action'     => 'view',
+        'id' => $this->album->id
+    )
+)?>">альбом <?php echo $this->escape($this->album->title); ?></a>
+<p>
+    Название фото: <?php echo $this->escape($this->photo->title) ?><br>
+    Адрес съемки: <?php echo $this->escape($this->photo->address) ?><br>
+    Добавлена: <?php echo $this->escape($this->photo->created) ?><br>
+</p>
+<p>
+    <a href="<?php echo $this->url(array(
+        'controller' => 'Photo',
+        'action'     => 'delete',
+        'id'         => $this->photo->id
+    )) ?>">Удалить фотографию</a><br>
+
+</p>
+<img src="<?php echo BASE_URL . '/photos/' . $this->photo->filename ?>">

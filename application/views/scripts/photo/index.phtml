@@ -1,0 +1,20 @@
+
+
+<p><a href="<?php echo $this->url(array(
+        'controller' => 'Index',
+        'action'     => 'add')) ?>">
+        Добавить новую фотографию в галерею</a></p>
+
+
+
+<?php foreach ($this->photos as $photo) : ?>
+    <p> Название фото: <?php echo $this->escape($photo->title) ?><br></p>
+    <a href="<?php echo $this->url(array(
+        'controller' => '',
+        'action'     => 'view',
+        'id'         => $photo->id
+    )) ?>">
+        <img src="<?php echo BASE_URL . '/photos/preview/' . $photo->filename ?>"></a><br>
+
+
+<?php endforeach ?>

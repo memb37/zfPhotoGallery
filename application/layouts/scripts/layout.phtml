@@ -1,0 +1,17 @@
+<?php echo $this->doctype() ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <?php echo $this->headMeta(); ?>
+    <?php echo $this->headTitle(); ?>
+</head>
+<body>
+<div id="header" style="background-color: #EEEEEE; height: 30px;">
+    <div id="header-logo" style="float: left">
+        <a href="<?php echo BASE_URL; ?>"><b>ZF Photo Gallery</b></a>
+    </div>
+</div>
+
+<?php echo $this->layout()->content ?>
+
+</body>
+</html>

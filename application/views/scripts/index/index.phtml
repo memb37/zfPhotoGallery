@@ -1,0 +1,72 @@
+<p><a href="<?php echo $this->url(array(
+        'controller' => 'album', 'action' => 'add')) ?>">
+        Создать новый альбом</a></p>
+<p><a href="<?php echo $this->url(array(
+        'controller' => 'photo',
+        'action'     => 'add')) ?>">
+        Добавить фотографию в галерею</a></p>
+
+
+
+<?php if (count($this->albums)): ?>
+    <table>
+        <tr>
+            <?php foreach ($this->albums as $album) : ?>
+                <td>Альбом
+                    <?php echo $this->escape($album->title) ?><br>
+                    <a href="<?php echo $this->url(array(
+                        'controller' => 'album',
+                        'action'     => 'view',
+                        'id'         => $album->id
+                    )) ?>">
+
+                        <?php if ($album->photos_count > 0): ?>
+                        <img src="<?php echo BASE_URL . '/photos/preview/' . $album->preview ?>"></a><br>
+                Фотографий в альбоме: <?php echo $this->escape($album->photos_count) ?><br>
+                Последнее фото загружено <?php echo $this->escape($album->last_photo) ?><br>
+                <?php else: ?>
+                    <img src="<?php echo BASE_URL . '/photos/preview/default.png' ?>"></a><br>
+                    В альбоме нет фотографий<br>
+                <?php endif ?>
+
+                </td>
+            <?php endforeach ?>
+        </tr>
+    </table>
+    <p><a href="<?php echo $this->url(array(
+            'controller' => 'album',
+            'action'     => 'index')) ?>">
+            Все альбомы</a></p>
+<?php else: ?>
+    <p>Нет альбомов</p>
+<?php endif ?>
+
+
+
+
+<?php if (count($this->photos)): ?>
+    Последние загруженные фотографии:
+    <table>
+        <tr>
+            <?php foreach ($this->photos as $photo) : ?>
+                <td>
+                    <?php echo $this->escape($photo->title) ?><br>
+                    <a href="<?php echo $this->url(array(
+                        'controller' => 'photo',
+                        'action'     => 'view',
+                        'id'         => $photo->id
+                    )) ?>">
+                        <img src="<?php echo BASE_URL . '/photos/preview/' . $photo->filename ?>"></a><br>
+
+
+                </td>
+            <?php endforeach ?>
+        </tr>
+    </table>
+    <p><a href="<?php echo $this->url(array(
+            'controller' => 'photo',
+            'action'     => 'index')) ?>">
+            Смотреть все фотографии</a></p>
+<?php else: ?>
+    <p>Нет фотографий</p>
+<?php endif ?>

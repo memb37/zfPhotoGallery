@@ -1,0 +1,47 @@
+<p>Информация об альбоме:<br></p>
+Название: <?php echo $this->escape($this->album->title) ?><br>
+Описание: <?php echo $this->escape($this->album->description) ?><br>
+Фотограф: <?php echo $this->escape($this->album->author) ?><br>
+Email: <?php echo $this->escape($this->album->email) ?><br>
+Телефон: <?php echo $this->escape($this->album->phone) ?><br>
+Создан: <?php echo $this->escape($this->album->created) ?><br>
+Изменен: <?php echo $this->escape($this->album->modified) ?><br>
+<p><a href="<?php echo $this->url(array(
+    'controller' => 'album',
+    'action'     => 'edit',
+)) ?>">Редактировать информацию</a></p>
+
+<p><a href="<?php echo $this->url(array(
+    'controller' => 'album',
+    'action'     => 'delete',
+)) ?>">Удалить альбом</a></p>
+
+<p><a href="<?php echo $this->url(array(
+        'controller' => 'Photo',
+        'action'     => 'add')) ?>">
+        Добавить фотографию в альбом</a></p>
+
+<?php foreach ($this->photos as $photo) : ?>
+    <p>
+        <?php echo $this->escape($photo->title) ?>
+        <br>
+
+        <a href="<?php echo $this->url(array(
+            'controller' => 'Photo',
+            'action'     => 'view',
+            'id'         => $photo->id,
+            'album_id'   => $this->album->id,
+        )) ?>">
+            <img src="<?php echo BASE_URL . '/photos/preview/' . $photo->filename ?>">
+
+        </a><br>
+
+        <a href="<?php echo $this->url(array(
+            'controller' => 'Photo',
+            'action'     => 'delete',
+            'id'         => $photo->id,
+            'album_id'   => $this->album->id,
+        )) ?>">
+            Удалить фотографию</a><br>
+    </p>
+<?php endforeach ?>
